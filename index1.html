@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuizy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="content-wrapper">
+    <h1>ガチで東京の人しか解けない！ #東京の難読地名クイズ</h1>
+    <section class="box-container">
+      <h2 id="question"></h2>
+      <div class="quiz-image-container">
+        <img class="quiz-image" id="image">
+      </div>
+      <ul id="quiz-parts">
+        <li class="primary" id="part1" onclick="ClickAnswer()"></li>
+        <li class="primary" id="part2" onclick="ClickAnswer()"></li>
+        <li class="primary" id="part3" onclick="ClickAnswer()"></li>
+      </ul>
+      <div class="quiz-result">
+        <p id="result"></p>
+        <p id="answer" ></p>
+      </div>
+    </section>
+  </div>
+  <script src="script1.js"></script>
+</body>
+
+</html>

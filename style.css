@@ -1,0 +1,68 @@
+/* ページ全体に適用 */
+*{
+  letter-spacing: .04em;
+  padding: 0;
+}
+
+/* 画面の収縮に対応 */
+/* 最大幅を指定して、それに対する要素の幅の割合を指定 */
+.content-wrapper{
+  max-width: 650px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* .content-wrapperに対する余白 */
+.box-container{
+  margin: 30px 15px;
+}
+
+/* もっと良いスタイルの指定方法あったかも */
+h1{
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 27px;
+  margin-bottom: 0;
+  margin: 30px 15px;
+}
+
+.quiz-image{
+  display: block;
+  width: 100%;
+}
+
+h2{
+  font-size: 17px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+/* blockと高さ入れないと緑線現れなかった */
+/* afterの形で指定することで下線の長さとか指定できる */
+h2:after{
+  display: block;
+  margin-top: 10px;
+  width: 90pt;
+  height: 2px;
+  background-color: #00ab36;
+  content: '';
+}
+
+li{
+  display: block;
+  padding: 13px;
+  margin: 10px 0;
+  font-weight: 600;
+  border: 1px solid #ebebeb;
+  box-shadow: 0 3px 2px -2px rgba(0,0,0,.13);
+}
+
+.blue{
+  background: #287dff;
+  color: #fff;
+}
+
+.red{
+  background: #ff5128;
+  color: #fff;
+}

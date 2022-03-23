@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header_wrapper">
+      <div class="header_left">
+        <div class="header_left_logo">
+          <img src="../img/logo.png" alt="logo">
+        </div>
+        <p>4th week</p>
+      </div>
+      <div class="header_right">
+        <button class="js-open button-open">記録・投稿</button>
+        <!-- オーバーレイ -->
+        <div id="overlay" class="overlay"></div>
+        <!-- モーダルウィンドウ -->
+          <div class="modal-window">
+            <div class="modalContent">
+              <div class="modalLeft">
+                <div class="modalDate">
+                  <div class="modalDateTitle">学習日</div>
+                  <input type="text" class="textInput" name="学習日">
+                </div>
+                <div class="studyContent">
+                  <div class="modalContentsTitle">学習コンテンツ（複数選択可）</div>
+                  <div class="checkbox">
+                    <div class="testbox testbox-bg" id="nyobi">
+                      <input type="checkbox" name="contentsBox" id="N予備校"><label for="N予備校"><i class="checkcircle-color fa-solid fa-circle-check fa-lg fa-fw"></i>N予備校</label>
+                    </div>
+                    <div class="testbox testbox-bg">
+                      <input type="checkbox" name="contentsBox" id="ドットインストール"><label for="ドットインストール"><i class="fa-solid fa-circle-check fa-lg checkcircle-color fa-fw"></i>ドットインストール</label>
+                    </div>
+                    <div class="testbox testbox-bg">
+                      <input type="checkbox" name="contentsBox" id="POSSE課題"><label for="POSSE課題"><i class="fa-solid fa-circle-check fa-lg checkcircle-color fa-fw"></i>POSSE課題</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="studyLang">
+                  <div class="modalContentsTitle">学習言語（複数選択可）</div>
+                  <div class="checkbox">
+                    <div class="textbox textbox-bg"><input type="checkbox" id="html"><label for="html">HTML</label></div>
+                    <div class="textbox textbox-bg"><input type="checkbox" id="css"><label for="css">CSS</label></div>
+                    <div class="textbox textbox-bg"><input type="checkbox" id="javascript"><label for="javascript">JavaScript</label></div>
+                    <div class="textbox textbox-bg"><input type="checkbox" id="PHP"><label for="PHP">PHP</label></div>
+                    <div class="textbox textbox-bg"><input type="checkbox" id="Laravel"><label for="Laravel">Laravel</label></div>
+                    <div class="textbox textbox-bg"><input type="checkbox" id="SQL"><label for="SQL">SQL</label></div>
+                    <div class="textbox textbox-bg"><input type="checkbox" id="SHELL"><label for="SHELL">SHELL</label></div>
+                    <div class="textbox textbox-bg"><input type="checkbox" id="情報システム基礎知識（その他）"><label for="情報システム基礎知識（その他）">情報システム基礎知識（その他）</label></div>
+                  </div>
+                </div>
+              </div>
+              <div class="modalRight">
+                <div class="studyTime">
+                  <div class="modalContentsTitle">学習時間</div>
+                  <input type="text" class="textInput" name="学習時間">
+                </div>
+                <div class="tweet">
+                  <div class="modalContentsTitle">Twitter用コメント</div>
+                  <textarea name="tweet" class="areaInput" cols="30" rows="10"></textarea>
+                </div>
+                <div class="tweetButton">
+                  <input type="checkbox" name="tweetBox">Twitterにシェアする
+                </div>
+              </div>
+            </div>
+            <div class="modalPost">記録・投稿</div>
+            <!-- 投稿完了 -->
+            <div class="completeContainer">
+              <div class="completeIconWrapper"></div>
+              <p>記録・投稿</p>
+            </div>
+            <!-- 閉じるボタン -->
+            <button class="js-close button-close">×</button>
+          </div>
+        </div>
+    </div>
+  </header>
+  <main>
+    <div class="top_container">
+      <div class="top_container_top">
+        <div class="top_container_left">
+          <div class="top_container_left_up">
+            <div class="content first box">
+              <div class="inner_text">
+                <p class="title">Today</p>
+                <p class="figure">3</p>
+                <p class="hour">hour</p>
+              </div>
+            </div>
+            <div class="content second box">
+              <div class="inner_text">
+                <p class="title">Month</p>
+                <p class="figure">120</p>
+                <p class="hour">hour</p>
+              </div>
+            </div>
+            <div class="content third box">
+              <div class="inner_text">
+                <p class="title">Total</p>
+                <p class="figure">1348</p>
+                <p class="hour">hour</p>
+              </div>
+            </div>
+          </div>
+          <div class="top_container_left_down box">
+            <div class="study_time" id="time_graph"></div>
+          </div>
+        </div>
+        <div class="top_container_right">
+          <div class="contents left box">
+            <h1>学習言語</h1>
+            <div class="chart">
+              <div class="chart_box">
+                <div class="doughnut">
+                  <canvas id="myDoughnutChart1">
+                  </canvas>
+                </div>  
+                <ul class="list">
+                  <li class="element1">JavaScript</li>
+                  <li class="element2">CSS</li>
+                  <li class="element3">PHP</li>
+                  <li class="element4">HTML</li>
+                  <li class="element5">Laravel</li>
+                  <li class="element6">SQL</li>
+                  <li class="element7">SHELL</li>
+                  <li class="element8">情報システム基礎知識（その他）</li>
+                </ul>
+              </div>  
+            </div>  
+          </div>
+          <div class="contents right box">
+            <h2>学習コンテンツ</h2>
+            <div class="chart">
+              <div class="chart_box">
+                <div class="doughnut">
+                  <canvas id="myDoughnutChart2">
+                  </canvas>
+                </div>  
+                <ul class="list">
+                  <li class="element1">ドットインストール</li>
+                  <li class="element2">N予備校　　　</li>
+                  <li class="element3">POSSE課題　　</li>
+                </ul>
+              </div>  
+            </div>  
+          </div>
+        </div>
+      </div>  
+      <div class="top_container_bottom">
+        <button id="button_back"></button>
+        <p>2020年 10月</p>
+        <button id="button_next"></button>
+      </div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>

@@ -9,8 +9,8 @@ $(function () {
 });
 
 //　ドーナツチャート
-  var ctx = document.getElementById("myDoughnutChart1");
-  var myDoughnutChart= new Chart(ctx, {
+  let ctx = document.getElementById("myDoughnutChart1").getContext("2d")
+  let myDoughnutChart= new Chart(ctx, {
     type: 'doughnut',
     data: {
       // labels: ['JavaScript', 'CSS', 'PHP', 'HTML', 'Laravel', 'SQL', 'SHELL', '情報システム基礎知識'], //データ項目のラベル
@@ -32,13 +32,24 @@ $(function () {
     },
     options: {
       title: {
-        display: true,
+        display: true
+      },
+      plugins: {
+        datalabels: {
+            render: 'percentage',
+            color: '#fff',
+            formatter: (value, ctx) => {
+                if (value < 10) 
+                return ''
+                return value + '%';
+            }
+        }
       }
     }
   });
 
-  var ctx = document.getElementById("myDoughnutChart2");
-  var myDoughnutChart= new Chart(ctx, {
+  ctx = document.getElementById("myDoughnutChart2").getContext('2d');
+  myDoughnutChart= new Chart(ctx, {
     type: 'doughnut',
     data: {
       datasets: [{
@@ -55,70 +66,128 @@ $(function () {
     options: {
       title: {
         display: true,
-      }
+      },
+      plugins: {
+        datalabels: {
+            color: '#fff',
+            formatter: (value, ctx) => {
+                return value + '%';
+            },
+        }
+    }
     }
   });
   
 
 //棒グラフ
-$.ajax({
-  type: 'GET', // リクエストのタイプ
-  url: 'http://posse-task.anti-pattern.co.jp/1st-work/study_time.json', // リクエストを送信するURL
-  dataType: 'json' // サーバーから返却される型
-})
-// ajaxからリクエストを受けとり
-.done(function (data) {
-  var study_day = [];
-  var study_time = [];
-  // chart.jsに渡すため配列に格納する
-  $(data).each(function(index, study) {
-    study_day.push(study.day);
-    study_time.push(study.time);
-  });
-  chart_func.bar_chart(document, study_day, study_time);
-})
+let target = document.getElementById('time_graph')
+ctx = target.getContext('2d')
+gradient = ctx.createLinearGradient(0, 0, 0, 1000)
+gradient.addColorStop(0, 'rgb(59, 204, 254)')
+gradient.addColorStop(1, 'rgb(17, 117, 191)')
 
-var ctx = document.getElementById("time_graph");
-var gradientStroke = ctx.createLinearGradient(0, 0, 0, 100);
-gradientStroke.addColorStop(0, rgb(15, 113, 189));
-gradientStroke.addColorStop(1, rgb(60, 206, 254));
+let content = new Chart(target, {
+    type: 'bar',
+    data: {
+        labels: ["", "", "2", "", "4", "", "6", "", "8", "", "10", "", "12", "", "14", "", "16", "", "18", "", "20", "", "22", "", "24", "", "26", "", "28", "", "30", ""],
+        datasets: [{
+            data: [0,3,4,5,3,0,0,4,2,2,8,8,2,2,1,7,4,4,3,3,3,2,2,6,2,2,1,1,1,7,8,3],
+            backgroundColor: gradient,
+            fill: false,
+        }],
+    },
 
-var config = {
-  type: 'bar',
-  data: {
-      datasets: [{
-          data: datas,
-          backgroundColor: gradientStroke,
-          borderRadious: '9999px',
-          fill: false,
-      }],
-      labels: labels
-    },
-    options: {
-        responsive: true
-    },
-    scales: {  
-      yAxes: [{ 
-          display: true, 
-          scaleLabel: {
-             display: true
-          },
-          ticks: {         
-              min: 0,      
-              max: 30,        
-              fontSize: 15
-          },
-      }],
-      xAxes: [{                     
-          display: true,
-          scaleLabel: {             
-             display: true            
-          },
-          ticks: {
-              fontSize: 15 
+    options: {                       // オプション
+      responsive: false,  // canvasサイズ自動設定機能を使わない。HTMLで指定したサイズに固定
+      title: {                           // タイトル
+          display: false,                     // 表示設定
+          fontSize: 18,                      // フォントサイズ
+          fontFamily: "sans-serif",
+          text: 'タイトル'                   // タイトルのラベル
+      },
+      legend: {                          // 凡例
+          display: false                     // 表示の有無
+          // position: 'bottom'              // 表示位置
+      },
+      scales: {                          // 軸設定
+          xAxes: [                           // Ｘ軸設定
+              {
+                  display: true,                // 表示の有無
+                  barPercentage: 0.8,           // カテゴリ幅に対する棒の幅の割合
+                  //categoryPercentage: 0.8,    // 複数棒のスケールに対する幅の割合
+                  scaleLabel: {                 // 軸ラベル
+                      display: false,                // 表示設定
+                      labelString: '横軸ラベル',    // ラベル
+                      fontColor: "red",             // 文字の色
+                      fontSize: 16                  // フォントサイズ
+                  },
+                  gridLines: {                   // 補助線
+                      display: false,             // 補助線なし
+                      drawBorder: false
+                  },
+                  ticks: {                      // 目盛り
+                      fontColor: '#97b9d1',             // 目盛りの色
+                      fontSize: 14,                  // フォントサイズ
+                      min: 1,
+                      max: 31,
+                      stepSize: 2
+                  },
+              }
+          ],
+          yAxes: [                           // Ｙ軸設定
+              {
+                  display: true,                 // 表示の有無
+                  scaleLabel: {                  // 軸ラベル
+                      display: false,                 // 表示の有無
+                      labelString: '縦軸ラベル',     // ラベル
+                      fontFamily: "sans-serif",      // フォントファミリー
+                      fontColor: "white",             // 文字の色
+                      fontSize: 16                   // フォントサイズ
+                  },
+                  gridLines: {                   // 補助線
+                      display: false,               // 補助線なし
+                      color: "rgba(0, 0, 255, 0.2)", // 補助線の色
+                      zeroLineColor: "black",         // y=0（Ｘ軸の色）
+                      drawBorder: false
+                  },
+                  ticks: {                       // 目盛り
+                      min: 0,                        // 最小値
+                      max: 8,                       // 最大値
+                      stepSize: 2,                   // 軸間隔
+                      fontColor: "#97b9d1",             // 目盛りの色
+                      fontSize: 14,                   // フォントサイズ
+                      callback: (tick) => {
+                        return tick.toString() + 'h'
+                      }
+                  },
+              }
+          ],
+      },
+      layout: {                          // 全体のレイアウト
+          padding: {                         // 余白
+              left: 20,
+              right: 10,
+              top: 40,
+              bottom: 0
           }
-      }],
-  },
-   };
+      }
+  }
+});
 
- window.myPie = new Chart(ctx, config);
+flatpickr('.flatpickr');
+
+let submit = document.getElementById('submit')
+let submitButton = document.getElementById('submit-button')
+let modalContent = document.getElementById('modalContent')
+let loading = document.getElementById('loading')
+let complete = document.getElementById('complete')
+
+submit.addEventListener('click',() => {
+modalContent.classList.add("none")
+loading.classList.remove("none")
+submitButton.classList.add("none")
+setTimeout(() => {
+    loading.classList.add("none")
+    complete.classList.remove("none")
+}, 5000);
+},false)

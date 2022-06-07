@@ -7,6 +7,10 @@
   <title>Document</title>
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/style.css">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
   <header>
@@ -23,62 +27,74 @@
         <div id="overlay" class="overlay"></div>
         <!-- モーダルウィンドウ -->
           <div class="modal-window">
-            <div class="modalContent">
+            <div class="modal-upper">
+              <button type="button" class="js-close btn-close"><span>×</span></button>
+            </div>
+            <div class="modalContent" id="modalContent">
               <div class="modalLeft">
                 <div class="modalDate">
-                  <div class="modalDateTitle">学習日</div>
-                  <input type="text" class="textInput" name="学習日">
+                  <div class="modal_title">学習日</div>
+                  <input type="text" class="flatpickr textInput" name="学習日">
                 </div>
                 <div class="studyContent">
-                  <div class="modalContentsTitle">学習コンテンツ（複数選択可）</div>
+                  <div class="modal_title">学習コンテンツ（複数選択可）</div>
                   <div class="checkbox">
-                    <div class="testbox testbox-bg" id="nyobi">
-                      <input type="checkbox" name="contentsBox" id="N予備校"><label for="N予備校"><i class="checkcircle-color fa-solid fa-circle-check fa-lg fa-fw"></i>N予備校</label>
+                    <div class="textbox textbox-bg" id="nyobi">
+                      <input type="checkbox" name="contentsBox" id="N予備校"><label for="N予備校">N予備校</label>
                     </div>
-                    <div class="testbox testbox-bg">
-                      <input type="checkbox" name="contentsBox" id="ドットインストール"><label for="ドットインストール"><i class="fa-solid fa-circle-check fa-lg checkcircle-color fa-fw"></i>ドットインストール</label>
+                    <div class="textbox textbox-bg">
+                      <input type="checkbox" name="contentsBox" id="ドットインストール"><label for="ドットインストール">ドットインストール</label>
                     </div>
-                    <div class="testbox testbox-bg">
-                      <input type="checkbox" name="contentsBox" id="POSSE課題"><label for="POSSE課題"><i class="fa-solid fa-circle-check fa-lg checkcircle-color fa-fw"></i>POSSE課題</label>
+                    <div class="textbox textbox-bg">
+                      <input type="checkbox" name="contentsBox" id="POSSE課題"><label for="POSSE課題">POSSE課題</label>
                     </div>
                   </div>
                 </div>
                 <div class="studyLang">
-                  <div class="modalContentsTitle">学習言語（複数選択可）</div>
+                  <div class="modal_title">学習言語（複数選択可）</div>
                   <div class="checkbox">
-                    <div class="textbox textbox-bg"><input type="checkbox" id="html"><label for="html">HTML</label></div>
-                    <div class="textbox textbox-bg"><input type="checkbox" id="css"><label for="css">CSS</label></div>
-                    <div class="textbox textbox-bg"><input type="checkbox" id="javascript"><label for="javascript">JavaScript</label></div>
-                    <div class="textbox textbox-bg"><input type="checkbox" id="PHP"><label for="PHP">PHP</label></div>
-                    <div class="textbox textbox-bg"><input type="checkbox" id="Laravel"><label for="Laravel">Laravel</label></div>
-                    <div class="textbox textbox-bg"><input type="checkbox" id="SQL"><label for="SQL">SQL</label></div>
-                    <div class="textbox textbox-bg"><input type="checkbox" id="SHELL"><label for="SHELL">SHELL</label></div>
-                    <div class="textbox textbox-bg"><input type="checkbox" id="情報システム基礎知識（その他）"><label for="情報システム基礎知識（その他）">情報システム基礎知識（その他）</label></div>
+                    <div class="textbox"><input type="checkbox" id="html"><label for="html">HTML</label></div>
+                    <div class="textbox"><input type="checkbox" id="css"><label for="css">CSS</label></div>
+                    <div class="textbox"><input type="checkbox" id="javascript"><label for="javascript">JavaScript</label></div>
+                    <div class="textbox"><input type="checkbox" id="PHP"><label for="PHP">PHP</label></div>
+                    <div class="textbox"><input type="checkbox" id="Laravel"><label for="Laravel">Laravel</label></div>
+                    <div class="textbox"><input type="checkbox" id="SQL"><label for="SQL">SQL</label></div>
+                    <div class="textbox"><input type="checkbox" id="SHELL"><label for="SHELL">SHELL</label></div>
+                    <div class="textbox"><input type="checkbox" id="情報システム基礎知識（その他）"><label for="情報システム基礎知識（その他）">情報システム基礎知識（その他）</label></div>
                   </div>
                 </div>
               </div>
               <div class="modalRight">
                 <div class="studyTime">
-                  <div class="modalContentsTitle">学習時間</div>
+                  <div class="modal_title">学習時間</div>
                   <input type="text" class="textInput" name="学習時間">
                 </div>
                 <div class="tweet">
-                  <div class="modalContentsTitle">Twitter用コメント</div>
-                  <textarea name="tweet" class="areaInput" cols="30" rows="10"></textarea>
+                  <div class="modal_title">Twitter用コメント</div>
+                  <textarea name="tweet" class="areaInput"></textarea>
                 </div>
                 <div class="tweetButton">
-                  <input type="checkbox" name="tweetBox">Twitterにシェアする
+                  <div class="textbox2"><input type="checkbox" name="tweetBox"><label for="twitter">Twitterにシェアする</label></div>
                 </div>
               </div>
             </div>
-            <div class="modalPost">記録・投稿</div>
+            <div class="submit" id="submit-button"><button id="submit">記録・投稿</div>
             <!-- 投稿完了 -->
-            <div class="completeContainer">
-              <div class="completeIconWrapper"></div>
-              <p>記録・投稿</p>
-            </div>
-            <!-- 閉じるボタン -->
-            <button class="js-close button-close">×</button>
+            <div class="row none loading" id="loading">
+              <!-- <div class="color"></div>
+              <div class="spinner-border col-2" role="status">
+                  <span class="sr-only"></span>
+              </div>
+              <div class="color"></div> -->
+          　</div>
+          　<div class="text-center none complete" id="complete">
+              <div class="awesome complete-part1">Awesome!</div>
+              <span class="material-icons complete-part2">
+                  task_alt
+              </span>
+              <div class="complete-part3">記録・投稿</div>
+              <div class="complete-part4">完了しました</div>
+          　</div>
           </div>
         </div>
     </div>
@@ -111,7 +127,7 @@
             </div>
           </div>
           <div class="top_container_left_down box">
-            <div class="study_time" id="time_graph"></div>
+            <canvas class="study_time" id="time_graph" width="580" height="400"></canvas>
           </div>
         </div>
         <div class="top_container_right">
@@ -120,7 +136,7 @@
             <div class="chart">
               <div class="chart_box">
                 <div class="doughnut">
-                  <canvas id="myDoughnutChart1">
+                  <canvas id="myDoughnutChart1" width="300" height="300">
                   </canvas>
                 </div>  
                 <ul class="list">
@@ -141,7 +157,7 @@
             <div class="chart">
               <div class="chart_box">
                 <div class="doughnut">
-                  <canvas id="myDoughnutChart2">
+                  <canvas id="myDoughnutChart2" width="300" height="300">
                   </canvas>
                 </div>  
                 <ul class="list">
@@ -161,11 +177,17 @@
       </div>
     </div>
   </main>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
   <script
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   <script src="../js/script.js"></script>
 </body>
 </html>
